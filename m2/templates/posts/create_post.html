@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Post — SocialApp{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-7">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h2 class="card-title mb-4">✏️ Create a New Post</h2>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Content</label>
+            {{ form.content }}
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Image (optional)</label>
+            {{ form.image }}
+          </div>
+          <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-primary">Publish Post</button>
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

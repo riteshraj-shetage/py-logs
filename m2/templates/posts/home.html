@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Feed — SocialApp{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <h2 class="mb-4">🏠 Home Feed</h2>
+
+    <!-- New Post Form -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Share something</h5>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="mb-3">
+            {{ post_form.content }}
+          </div>
+          <div class="mb-3">
+            {{ post_form.image }}
+          </div>
+          <button type="submit" class="btn btn-primary">Post</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Posts List -->
+    {% if posts %}
+      {% for post in posts %}
+        <div class="card shadow-sm mb-4 post-card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <div>
+                <span class="fw-bold">{{ post.author.username }}</span>
+                <span class="text-muted small ms-2">{{ post.created_at|date:"N j, Y, g:i a" }}</span>
+              </div>
+              {% if post.author == request.user %}
+                <form method="post" action="{% url 'delete_post' post.pk %}"
+                      onsubmit="return confirm('Delete this post?');">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-sm btn-outline-danger">🗑 Delete</button>
+                </form>
+              {% endif %}
+            </div>
+
+            <p class="card-text">{{ post.content }}</p>
+
+            {% if post.image %}
+              <img src="{{ post.image.url }}" alt="Post image" class="img-fluid rounded mb-3 post-image">
+            {% endif %}
+
+            <div class="d-flex align-items-center gap-3 mt-2">
+              <!-- Like button -->
+              <form method="post" action="{% url 'toggle_like' post.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm {% if post.user_liked %}btn-danger{% else %}btn-outline-secondary{% endif %}">
+                  ❤️ {{ post.like_count }} {% if post.user_liked %}Unlike{% else %}Like{% endif %}
+                </button>
+              </form>
+
+              <!-- Comments link -->
+              <a href="{% url 'post_detail' post.pk %}" class="btn btn-sm btn-outline-secondary">
+                💬 {{ post.comments.count }} Comment{{ post.comments.count|pluralize }}
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="text-center text-muted py-5">
+        <p class="fs-5">No posts yet. Be the first to post! 🎉</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

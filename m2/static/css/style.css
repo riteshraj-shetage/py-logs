@@ -1,0 +1,57 @@
+/* SocialApp custom styles */
+
+body {
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* Post cards */
+.post-card {
+  border: none;
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease;
+}
+
+.post-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Comment cards */
+.comment-card {
+  border-left: 3px solid #0d6efd;
+  border-radius: 6px;
+}
+
+/* Post images */
+.post-image {
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Navbar brand */
+.navbar-brand {
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+}
+
+/* Auth card centering */
+.card {
+  border: none;
+  border-radius: 12px;
+}
+
+/* Footer */
+footer {
+  background-color: #fff;
+}
+
+/* Alert tweaks */
+.alert {
+  border-radius: 10px;
+}
+
+/* Gap utility for older Bootstrap versions */
+.gap-3 {
+  gap: 1rem;
+}
