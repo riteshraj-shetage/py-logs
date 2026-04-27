@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Profile — SaaS Platform{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="card-title mb-4"><i class="bi bi-person-circle me-2"></i>My Profile</h2>
+                <table class="table">
+                    <tr><th>Username</th><td>{{ user.username }}</td></tr>
+                    <tr><th>Email</th><td>{{ user.email }}</td></tr>
+                    {% if user.profile %}
+                    <tr><th>Organization</th><td>{{ user.profile.tenant.name|default:'None' }}</td></tr>
+                    <tr><th>Role</th><td>{{ user.profile.get_role_display }}</td></tr>
+                    <tr><th>Joined</th><td>{{ user.profile.joined_at|date:'M d, Y' }}</td></tr>
+                    {% endif %}
+                </table>
+                <a href="{% url 'tenant_dashboard' %}" class="btn btn-outline-primary">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
