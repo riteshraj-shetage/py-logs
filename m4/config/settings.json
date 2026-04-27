@@ -1,0 +1,19 @@
+{
+  "file_organizer": {
+    "categories": {
+      "Documents": [".pdf", ".doc", ".docx", ".txt", ".xlsx", ".csv", ".pptx"],
+      "Images": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg", ".webp"],
+      "Videos": [".mp4", ".avi", ".mov", ".wmv", ".mkv"],
+      "Music": [".mp3", ".wav", ".aac", ".flac", ".ogg"],
+      "Archives": [".zip", ".rar", ".7z", ".tar", ".gz"],
+      "Code": [".py", ".js", ".html", ".css", ".java", ".cpp", ".ts"]
+    },
+    "log_operations": true
+  },
+  "scraper": {
+    "default_delay": 1.0,
+    "timeout": 10,
+    "max_retries": 3,
+    "user_agent": "Mozilla/5.0 (compatible; EducationalScraper/1.0)"
+  }
+}
